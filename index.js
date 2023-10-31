@@ -4,11 +4,15 @@ const inq = require("inquirer");
 // global var
 const actionList = ["View All Employees", "Add Employee", "Update Employee Role", "View All Roles", "Add Role", "View All Departments", "Add Department", "Quit"];
 
-// init func 
-let init = () => {
+// async init func 
+async function init(){
+    await inqChoices();
+}
+
+// async 
+async function inqChoices() {
     // inquirer prompt
-    inq
-        .prompt([
+    const { action } =  await inq.prompt([
             {
                 type: 'list',
                 message: 'What would your like to do?',
@@ -17,8 +21,8 @@ let init = () => {
             }
         ])
         // then response
-        .then((response) => {
-            
+        .then(() => {
+            console.log(action);
         });
 }
 
