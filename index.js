@@ -1,5 +1,6 @@
 // import inquirer package
 const inq = require("inquirer");
+const db = require("./connection.js");
 
 // global var
 const actionList = ["View All Employees", "Add Employee", "Update Employee Role", "View All Roles", "Add Role", "View All Departments", "Add Department", "Quit"];
