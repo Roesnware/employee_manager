@@ -21,6 +21,7 @@ async function inqChoices() {
             }
         ])
         // then response
+        // will need to return init if action is not QUIT
         .then(() => {
             console.log(action);
         });
