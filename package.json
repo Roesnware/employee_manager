@@ -1,5 +1,5 @@
 {
-    "name": "static-site",
+    "name": "employee-manager",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
@@ -10,7 +10,8 @@
     "license": "MIT",
     "dependencies": {
       "inquirer": "^8.2.4",
-      "mysql2": "^2.2.5"
+      "mysql2": "^2.2.5",
+      "dotenv": "^8.6.0"
     }
   }
   
