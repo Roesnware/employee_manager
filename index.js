@@ -21,30 +21,36 @@ async function inqChoices() {
             name: 'action'
         }
     ]);
-    // then response
+    // switch case on input 
     // will need to return init if action is not QUIT
-    console.log(action);
     switch (action) {
         case "View All Employees":
-            viewAllEmployees();
+            console.log(action);
+            //viewAllEmployees();
             return init();
         case "Add Employee":
-            addEmployee();
+            console.log(action);
+            //addEmployee();
             return init();
         case "Update Employee Role":
-            updateEmployeeRole();
+            console.log(action);
+            //updateEmployeeRole();
             return init();
         case "View All Roles":
-            viewAllRoles();
+            console.log(action);
+            //viewAllRoles();
             return init();
         case "Add Role":
-            addRole();
+            console.log(action);
+            //addRole();
             return init();
         case "View All Departments":
-            viewAllDepartments();
+            console.log(action);
+            //viewAllDepartments();
             return init();
         case "Add Department":
-            addDepartment();
+            console.log(action);
+            //addDepartment();
             return init();
         default:
             break;
