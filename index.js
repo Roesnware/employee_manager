@@ -53,7 +53,7 @@ async function inqChoices() {
             //addDepartment();
             return init();
         default:
-            break;
+            process.exit();
     }
 }
 
