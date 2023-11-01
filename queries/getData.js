@@ -2,7 +2,7 @@
 const connection = require('../connection.js');
 
 // async func to get data based on which table 
-async function GetData(table) {
+async function getData(table) {
     try { // try connection 
         const db = await connection();
         let sql = "";
@@ -81,4 +81,4 @@ async function GetData(table) {
 }
 
 // export module 
-module.exports = GetData;
+module.exports = getData;
