@@ -31,50 +31,51 @@ async function inqChoices() {
 
             getData('employee');
 
-            return init();
+            break;
         case "Add Employee":
             console.log(action);
 
             let employee_response = miniPrompt(action);
             addData('employee', employee_response);
 
-            return init();
+            break;
         case "Update Employee Role":
             console.log(action);
 
             let employee_data = editEmployee();
             updateData(employee_data);
             
-            return init();
+            break;
         case "View All Roles":
             console.log(action);
 
             getData('role');
 
-            return init();
+            break;
         case "Add Role":
             console.log(action);
 
             let role_response = miniPrompt(action);
             addData('role', role_response);
         
-            return init();
+            break;
         case "View All Departments":
             console.log(action);
 
             getData('department');
 
-            return init();
+            break;
         case "Add Department":
             console.log(action);
 
             let department_response = miniPrompt(action);
             addData('department', department_response);
 
-            return init();
+            break;
         default:
             process.exit();
     }
+    return init();
 }
 
 // mini promt for adding data
