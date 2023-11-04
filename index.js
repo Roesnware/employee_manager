@@ -27,53 +27,56 @@ async function inqChoices() {
     // will need to return init if action is not QUIT
     switch (action) {
         case "View All Employees":
-            console.log(action);
+            //console.log(action);
 
             getData('employee');
 
             break;
         case "Add Employee":
-            console.log(action);
+            //console.log(action);
 
-            let employee_response = miniPrompt(action);
+            let employee_response = await miniPrompt(action);
             addData('employee', employee_response);
 
             break;
         case "Update Employee Role":
-            console.log(action);
+            //console.log(action);
 
-            let employee_data = editEmployee();
+            let employee_data = await editEmployee();
             updateData(employee_data);
-            
+
             break;
         case "View All Roles":
-            console.log(action);
+            //console.log(action);
 
             getData('role');
 
             break;
         case "Add Role":
-            console.log(action);
+            //console.log(action);
 
-            let role_response = miniPrompt(action);
+            let role_response = await miniPrompt(action);
             addData('role', role_response);
-        
+
             break;
         case "View All Departments":
-            console.log(action);
+            //console.log(action);
 
             getData('department');
 
             break;
         case "Add Department":
-            console.log(action);
+            //console.log(action);
 
-            let department_response = miniPrompt(action);
+            let department_response = await miniPrompt(action);
             addData('department', department_response);
 
             break;
-        default:
+        case "Quit":
+
             process.exit();
+        default:
+            return init();
     }
     return init();
 }
@@ -82,19 +85,17 @@ async function inqChoices() {
 async function miniPrompt(action) {
     // prompt for adding department
     if (action == "Add Department") {
-        inq
+        let res = await inq
             .prompt([{
                 type: 'input',
                 message: 'What is the name of the department you would like to add?',
                 name: 'name'
             }
-            ]).then((response) => {
-                return response;
-            });
+            ])
     }
     // prompt for adding role
     else if (action == "Add Role") {
-        inq
+        let res = await inq
             .prompt([{
                 type: 'input',
                 message: 'What is the title of the role you would like to add?',
@@ -110,14 +111,17 @@ async function miniPrompt(action) {
                 message: 'What is the department for the role you would like to add?',
                 name: 'department_id'
             }
-            ]).then((response) => {
-                return response;
-            });
+            ])
     }
     // prompt for adding employee
     else {
-        inq
+        let res = await inq
             .prompt([{
+                type: 'input',
+                message: 'What is the id of the employee you would like to add?',
+                name: 'id'
+            },
+            {
                 type: 'input',
                 message: 'What is the first name of the employee you would like to add?',
                 name: 'first_name'
@@ -137,32 +141,28 @@ async function miniPrompt(action) {
                 message: 'What is the manager id for the employee you would like to add?',
                 name: 'manager_id'
             }
-            ]).then((response) => {
-                return response;
-            });
+            ])
     }
 }
 
 // fucn for editing employee
 async function editEmployee() {
     // prompt for editing employee
-    inq
+    let res = await inq
         .prompt([
             {
                 type: 'list',
                 message: 'Please select an employee to edit : ',
                 choices: await GetData("employee"),
                 name: 'employee'
-            }, 
+            },
             {
                 type: 'list',
                 message: 'Please select a new role for this employee : ',
                 choices: await GetData("role"),
                 name: 'employee_role'
             }
-        ]).then((response) => {
-            return response;
-        });
+        ])
 }
 
 // call init 

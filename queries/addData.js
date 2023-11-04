@@ -2,7 +2,7 @@
 const connection = require('../connection.js');
 
 // async func to get data based on which table 
-async function addData(table) {
+async function addData(table, data) {
     try { // try connection 
         const db = await connection();
         let sql = "";
@@ -20,7 +20,7 @@ async function addData(table) {
                     if (err) {
                         console.log(err);
                     }
-                    console.log(results);
+                    //console.log(results);
                 })
 
                 // make repsonse obj
@@ -44,7 +44,7 @@ async function addData(table) {
                     if (err) {
                         console.log(err);
                     }
-                    console.log(results);
+                    //console.log(results);
                 })
 
                 // make repsonse obj
@@ -58,17 +58,17 @@ async function addData(table) {
             case 'employee':
 
                 // sql code 
-                sql = "INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?);"
+                sql = "INSERT INTO employee(id, first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?, ?);"
 
                 // destruc data 
-                const { first_name, last_name, role_id, manager_id } = data;
+                const { id, first_name, last_name, role_id, manager_id } = data;
 
                 // inserting data to table  
-                db.query(sql, [first_name, last_name, role_id, manager_id], (err, results) => {
+                db.query(sql, [id, first_name, last_name, role_id, manager_id], (err, results) => {
                     if (err) {
                         console.log(err);
                     }
-                    console.log(results);
+                    //console.log(results);
                 })
 
                 // make repsonse obj
