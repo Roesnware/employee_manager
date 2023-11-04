@@ -27,8 +27,7 @@
 
 ## Demo 
 
-![demo1]()
-![demo2]()
+![demo1](demo_employeeManager.mp4)
 
 ## Test
 
