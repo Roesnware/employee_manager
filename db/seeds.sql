@@ -1,28 +1,28 @@
-INSERT INTO department (id, name)
-VALUES (001, "Retail"),
-       (002, "Engineering"),
-       (003, "Finance");
+INSERT INTO department (name)
+VALUES ("Retail"),
+       ("Engineering"),
+       ("Finance");
 
-INSERT INTO role (id, title, salary, department_id)
-VALUES (001, "Stocker", 35750.00, 001),
-       (002, "Project Lead", 98000.00, 002),
-       (003, "Software Developer", 84000.00, 002),
-       (004, "Lead Engineer", 250000.00, 002),
-       (005, "Cashier", 30000.00, 001),
-       (006, "Finance Advisor", 73000.00, 003),
-       (007, "Accountant", 63500.00, 003),
-       (008, "Mortgage Broker", 120000.00, 003);
+INSERT INTO role (title, salary, department_id)
+VALUES ("Stocker", 35750.00, 001),
+       ("Project Lead", 98000.00, 002),
+       ("Software Developer", 84000.00, 002),
+       ("Lead Engineer", 250000.00, 002),
+       ("Cashier", 30000.00, 001),
+       ("Finance Advisor", 73000.00, 003),
+       ("Accountant", 63500.00, 003),
+       ("Mortgage Broker", 120000.00, 003);
 
-INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
-VALUES (001, "John", "Doe", 001),
-       (002, "Trae", "Roy", 002),
-       (003, "Austin", "Hacker", 003, 004),
-       (004, "Matthew", "Shanosky", 004, 002),
-       (005, "Andrew", "McCutcheon", 005),
-       (006, "Naruto", "Uzamaki", 006),
-       (007, "Sasuke", "Uchicha", 002),
-       (008, "Ken", "Kanaki", 004, 007),
-       (009, "Clark", "Kent", 008),
-       (010, "Bruce", "Wayne", 001),
-       (011, "Tony", "Stark", 002);
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
+VALUES ("John", "Doe", 001, null),
+       ("Trae", "Roy", 002, null),
+       ("Austin", "Hacker", 003, 004),
+       ("Matthew", "Shanosky", 004, 002),
+       ("Andrew", "McCutcheon", 005, null),
+       ("Naruto", "Uzamaki", 006, null),
+       ("Sasuke", "Uchicha", 002, null),
+       ("Ken", "Kanaki", 004, 007),
+       ("Clark", "Kent", 008, null),
+       ("Bruce", "Wayne", 001, null),
+       ("Tony", "Stark", 002, null);
 

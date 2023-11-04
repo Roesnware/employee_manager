@@ -83,20 +83,23 @@ async function inqChoices() {
 
 // mini promt for adding data
 async function miniPrompt(action) {
+
+    let questions = [];
+
     // prompt for adding department
     if (action == "Add Department") {
-        let res = await inq
-            .prompt([{
+        questions = [
+            {
                 type: 'input',
                 message: 'What is the name of the department you would like to add?',
-                name: 'name'
+                name: 'department_name'
             }
-            ])
+        ]
     }
     // prompt for adding role
     else if (action == "Add Role") {
-        let res = await inq
-            .prompt([{
+        questions = [
+            {
                 type: 'input',
                 message: 'What is the title of the role you would like to add?',
                 name: 'title'
@@ -110,17 +113,11 @@ async function miniPrompt(action) {
                 type: 'input',
                 message: 'What is the department for the role you would like to add?',
                 name: 'department_id'
-            }
-            ])
+            }]
     }
     // prompt for adding employee
     else {
-        let res = await inq
-            .prompt([{
-                type: 'input',
-                message: 'What is the id of the employee you would like to add?',
-                name: 'id'
-            },
+        questions = [
             {
                 type: 'input',
                 message: 'What is the first name of the employee you would like to add?',
@@ -141,28 +138,34 @@ async function miniPrompt(action) {
                 message: 'What is the manager id for the employee you would like to add?',
                 name: 'manager_id'
             }
-            ])
+        ]
     }
+    let results;
+    await inq.prompt(questions).then((res) => { results = res })
+    return results;
 }
 
 // fucn for editing employee
 async function editEmployee() {
     // prompt for editing employee
-    let res = await inq
-        .prompt([
-            {
-                type: 'list',
-                message: 'Please select an employee to edit : ',
-                choices: await GetData("employee"),
-                name: 'employee'
-            },
-            {
-                type: 'list',
-                message: 'Please select a new role for this employee : ',
-                choices: await GetData("role"),
-                name: 'employee_role'
-            }
-        ])
+    let questions = [
+        {
+            type: 'list',
+            message: 'Please select an employee to edit : ',
+            choices: await getData("employee"),
+            name: 'employee'
+        },
+        {
+            type: 'list',
+            message: 'Please select a new role for this employee : ',
+            choices: await getData("role"),
+            name: 'employee_role'
+        }
+    ]
+
+    let results;
+    await inq.prompt(questions).then((res) => { results = res })
+    return results;
 }
 
 // call init 

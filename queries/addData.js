@@ -9,14 +9,16 @@ async function addData(table, data) {
         let response = {};
 
         // switch case for diff tables 
-        switch (table, data) {
+        switch (table) {
+            // add department
             case 'department':
 
                 // sql code 
-                sql = "INSERT INTO department(name) VALUES (?);"
-
+                sql = "INSERT INTO department(name) VALUES (?)"
+                let { department_name } = data;
+                //console.log(department_name)
                 // inserting data to table  
-                db.query(sql, data, (err, results) => {
+                db.query(sql, [department_name], (err, results) => {
                     if (err) {
                         console.log(err);
                     }
@@ -30,11 +32,11 @@ async function addData(table, data) {
 
                 // break
                 break;
-
+            // add role
             case 'role':
 
                 // sql code 
-                sql = "INSERT INTO role(title, salary, department_id) VALUES (?, ?, ?);"
+                sql = "INSERT INTO role(title, salary, department_id) VALUES (?, ?, ?)"
 
                 // destruc data 
                 const { title, salary, department_id } = data;
@@ -54,17 +56,17 @@ async function addData(table, data) {
 
                 // break
                 break;
-
+            // add employee
             case 'employee':
 
                 // sql code 
-                sql = "INSERT INTO employee(id, first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?, ?);"
+                sql = "INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)"
 
                 // destruc data 
-                const { id, first_name, last_name, role_id, manager_id } = data;
+                const { first_name, last_name, role_id, manager_id } = data;
 
                 // inserting data to table  
-                db.query(sql, [id, first_name, last_name, role_id, manager_id], (err, results) => {
+                db.query(sql, [first_name, last_name, role_id, manager_id], (err, results) => {
                     if (err) {
                         console.log(err);
                     }
