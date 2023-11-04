@@ -1,6 +1,8 @@
 // import inquirer package
 const inq = require("inquirer");
-const connection = require("./connection.js");
+const addData = require('./queries/addData.js');
+const getData = require('./queries/getData.js');
+const updateData = require('./queries/updateData.js');
 
 // global var
 const actionList = ["View All Employees", "Add Employee", "Update Employee Role", "View All Roles", "Add Role", "View All Departments", "Add Department", "Quit"];
@@ -26,35 +28,140 @@ async function inqChoices() {
     switch (action) {
         case "View All Employees":
             console.log(action);
-            //viewAllEmployees();
+
+            getData('employee');
+
             return init();
         case "Add Employee":
             console.log(action);
-            //addEmployee();
+
+            let employee_response = miniPrompt(action);
+            addData('employee', employee_response);
+
             return init();
         case "Update Employee Role":
             console.log(action);
-            //updateEmployeeRole();
+
+            let employee_data = editEmployee();
+            updateData(employee_data);
+            
             return init();
         case "View All Roles":
             console.log(action);
-            //viewAllRoles();
+
+            getData('role');
+
             return init();
         case "Add Role":
             console.log(action);
-            //addRole();
+
+            let role_response = miniPrompt(action);
+            addData('role', role_response);
+        
             return init();
         case "View All Departments":
             console.log(action);
-            //viewAllDepartments();
+
+            getData('department');
+
             return init();
         case "Add Department":
             console.log(action);
-            //addDepartment();
+
+            let department_response = miniPrompt(action);
+            addData('department', department_response);
+
             return init();
         default:
             process.exit();
     }
+}
+
+// mini promt for adding data
+async function miniPrompt(action) {
+    // prompt for adding department
+    if (action == "Add Department") {
+        inq
+            .prompt([{
+                type: 'input',
+                message: 'What is the name of the department you would like to add?',
+                name: 'name'
+            }
+            ]).then((response) => {
+                return response;
+            });
+    }
+    // prompt for adding role
+    else if (action == "Add Role") {
+        inq
+            .prompt([{
+                type: 'input',
+                message: 'What is the title of the role you would like to add?',
+                name: 'title'
+            },
+            {
+                type: 'input',
+                message: 'What is the salary of the role you would like to add?',
+                name: 'salary'
+            },
+            {
+                type: 'input',
+                message: 'What is the department for the role you would like to add?',
+                name: 'department_id'
+            }
+            ]).then((response) => {
+                return response;
+            });
+    }
+    // prompt for adding employee
+    else {
+        inq
+            .prompt([{
+                type: 'input',
+                message: 'What is the first name of the employee you would like to add?',
+                name: 'first_name'
+            },
+            {
+                type: 'input',
+                message: 'What is the last name of the employee you would like to add?',
+                name: 'last_name'
+            },
+            {
+                type: 'input',
+                message: 'What is the role id for the employee you would like to add?',
+                name: 'role_id'
+            },
+            {
+                type: 'input',
+                message: 'What is the manager id for the employee you would like to add?',
+                name: 'manager_id'
+            }
+            ]).then((response) => {
+                return response;
+            });
+    }
+}
+
+// fucn for editing employee
+async function editEmployee() {
+    // prompt for editing employee
+    inq
+        .prompt([
+            {
+                type: 'list',
+                message: 'Please select an employee to edit : ',
+                choices: await GetData("employee"),
+                name: 'employee'
+            }, 
+            {
+                type: 'list',
+                message: 'Please select a new role for this employee : ',
+                choices: await GetData("role"),
+                name: 'employee_role'
+            }
+        ]).then((response) => {
+            return response;
+        });
 }
 
 // call init 
