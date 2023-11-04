@@ -1,7 +1,7 @@
-# Note Taker
+# Employee Manager
 ## Description
     
-    I want to create a program that enables me to keep all my notes and things to do in one space.
+    I want to create a program that enables business owners full control over their data and operations using node.js and mySQL.
     Business owners are able to view and manage the departments, roles, and employees in their company
     and can organize and plan their business. I learned express.js, node.js, and mySQL.
 
